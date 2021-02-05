@@ -1,0 +1,8 @@
+{{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+{{ form_errors(form.model) }}
+{{ form_label(form.model, 'Modèle:', {"label_attr":{'class':'form_model'}}) }}
+{{ form_widget(form.model) }}
+{{ form_errors(form.price) }}
+{{ form_label(form.price, 'Prix:',{"label_attr":{'class':'form_price','class':'m-2'}}) }}
+{{ form_widget(form.price) }}
+{{ form_row(form.image) }}

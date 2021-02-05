@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Car-Add
+{% endblock %}
+{% block body %}
+	<main>
+		<div class="container">
+			<div class="row">
+				<div class="col-8">
+					<h1 class="text-center m-2">Ajout de voiture:</h1>
+						<div class="col-md-8">
+							{% include 'partials/_form.html.twig'%}
+							<button class="addkeyword btn btn-primary">Ajouter un mot clé</button>
+							<input type="submit" class="btn btn-primary" value="Ajouter une voiture">
+							{{ form_end(form) }}
+						</div>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}
+
+{% block js %}
+	{{ parent() }}
+	<script>
+        $(document).ready(function(){
+            let $container = $('#car_keywords');
+            let index = $container.find('input').length;
+            if(index === 0){
+                addKeyword($container);
+            }
+            $('.addKeyword').click(function(e){
+                e.preventDefault();
+                addKeyword($container);
+            });
+            function addKeyword($container){
+                let template = $container.attr('data-prototype')
+                    .replace(/__name__label__/g, 'Mot clé n°' + (index + 1))
+                    .replace(/__name/g, index)
+                ;
+                let $prototype = $(template);
+                $container.append($prototype);
+                index++;
+            }
+        })
+	</script>
+{% endblock %}

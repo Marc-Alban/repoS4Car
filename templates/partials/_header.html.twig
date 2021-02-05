@@ -1,0 +1,31 @@
+	<header>
+		<div class="collapse bg-dark" id="navbarHeader">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-8 col-md-7 py-4">
+						<h4 class="text-white">A propos</h4>
+						<p class="text-muted">Nous sommes une agence de location. Ouverte du lundi au vendredi de 08h00 à 20h00.</p>
+					</div>
+					<div class="col-sm-4 offset-md-1 py-4">
+						<h4 class="text-white">Suivez-nous</h4>
+						<ul class="list-unstyled">
+							<li><a href="#" class="text-white">Twitter</a></li>
+							<li><a href="#" class="text-white">Facebook</a></li>
+							<li><a href="#" class="text-white">Email</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="navbar navbar-dark bg-dark shadow-sm">
+			<div class="container">
+				<a href="{{ path('app_home') }}" class="navbar-brand d-flex align-items-center">
+					<img src="{{ asset('img/sedan-car-front.svg') }}" alt="" class="p-2">
+					<strong>Car</strong>
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+		</div>
+	</header>

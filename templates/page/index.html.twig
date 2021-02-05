@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Car-Home
+{% endblock %}
+{% block body %}
+	<main>
+		<section class="py-5 text-center container">
+			<div class="row py-lg-5">
+				<div class="col-lg-6 col-md-8 mx-auto">
+					<h1 class="fw-light">Car</h1>
+					<p class="lead text-muted">Location/Vente de voiture à la demande </p>
+					<p>
+						<a href="{{ path('app_add') }}" class="btn btn-primary my-2">Ajouter une voiture</a>
+					</p>
+				</div>
+			</div>
+		</section>
+		<section class="py-5 text-center-container">
+			<div class="album py-5 bg-light">
+				<div class="container">
+					<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+						{% for car in cars %}
+							<div class="col">
+								<div class="card shadow-sm">
+									{% if car.image.name is defined %}
+										<img src="{{ asset('img/')~car.image.name }}" alt="">
+									{% else %}
+										<p>Pas d'image</p>
+									{% endif %}
+									<div class="card-body">
+										<div class="d-flex justify-content-around align-items-center">
+											<p class="card-text"><a href="{{ path('app_show',{id:car.id}) }}">{{ car.model }}</a></p>--
+											<p class="btn-group">
+												<a href="{{ path('app_show',{id:car.id}) }}">View</a>|
+												<a href="{{ path('app_edit',{id:car.id}) }}">Edit</a>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<p class=" d-flex justify-content-center">
+				<a href="#">Remonter en haut</a>
+			</p>
+		</section>
+
+	</main>
+{% endblock %}

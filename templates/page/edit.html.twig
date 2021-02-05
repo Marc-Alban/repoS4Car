@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	Car-Edit
+{% endblock %}
+{% block body %}
+	<main>
+		<div class="container">
+			<div class="row">
+				<div class="col-8">
+					<h1 class="text-center m-2">Edition de voiture:</h1>
+					<div class="d-flex justify-content-around flex-wrap">
+						{% include 'partials/_form.html.twig'%}
+						<input type="submit" class="btn btn-primary justify-content-center" value="Editer une voiture">
+						{{ form_end(form) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock %}
