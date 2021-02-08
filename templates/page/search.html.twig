@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {{ form(search_form) }}
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row">
+            {% if app.request.method == 'POST' %}
+                <div class="row">
+                    <div class="col-md-6">
+                        {% if cars |length  == 0 %}
+                           <h1>Aucun résultats</h1>
+                            {% else %}
+                            <h1>Résultat de votre recherche:</h1>
+                                {% for car in cars %}
+                                    <div class="row">
+                                        <p>Model: {{ car.model }}</p>
+                                        <p>Prix: {{ car.price }}</p>
+                                        {% if car.image.name is defined %}
+                                            <p>Image: <img src="{{ asset('img/')~car.image.name }}" alt=""></p>
+                                        {% else %}
+                                            <p>Pas d'image</p>
+                                        {% endif %}
+                                        {% for keyword in car.keywords %}
+                                            <p>{{ keyword.name }} {% if not loop.last %},{% endif %}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+                               <div class="btn btn-primary">
+                                   <a href="{{ path('app_home') }}">Retour Accueil</a>
+                               </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+{% endblock %}
+{% block js %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            $('select').formSelect();
+        });
+    </script>
+{% endblock %}

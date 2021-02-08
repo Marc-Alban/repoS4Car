@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Car;
 use App\Form\CarType;
+use App\Form\SearchCarType;
 use App\Repository\CarRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Image;
@@ -40,6 +41,26 @@ class IndexController extends AbstractController
     {
         return $this->render('page/show.html.twig',[
             'car' => $car
+        ]);
+    }
+
+    /**
+     * @Route("/search",name="app_search")
+     * @param Request $request
+     * @param CarRepository $carRepository
+     * @return Response
+     */
+    public function search(Request $request, CarRepository $carRepository): Response
+    {
+        $cars = [];
+        $searchCarForm = $this->createForm(SearchCarType::class);
+        if($searchCarForm->handleRequest($request)->isSubmitted()&&$searchCarForm->isValid()){
+            $criteria = $searchCarForm->getData();
+            $cars = $carRepository->searchCar($criteria);
+        }
+        return $this->render('page/search.html.twig',[
+            'search_form' => $searchCarForm->createView(),
+            'cars' => $cars
         ]);
     }
 

@@ -22,19 +22,22 @@ class CarRepository extends ServiceEntityRepository
     // /**
     //  * @return Car[] Returns an array of Car objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function searchCar($value)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('c.color = :color')
+            ->setParameter('color', $value['color'])
+            ->andwhere('c.carburant = :carburant')
+            ->setParameter('carburant', $value['fuel'])
+            ->andwhere('c.price > :minPrice')
+            ->setParameter('minPrice', $value['minPrice'])
+            ->andwhere('c.price < :maxPrice')
+            ->setParameter('maxPrice', $value['maxPrice'])
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Car
